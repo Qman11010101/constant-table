@@ -10,8 +10,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Sawarabi+Gothic&display=swap" rel="stylesheet">
     <script>
-        var dispTitle = true;
-        var dispExps = true;
+        let dispTitle = true;
+        let dispExps = true;
 
         function toggleDispTitle() {
             const titles = document.getElementsByClassName("titleblock");
@@ -57,18 +57,30 @@
                 }
             }
         }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const tableWidth = document.getElementById("table_width");
+            tableWidth.addEventListener("change", function() {
+                bodywrap = document.getElementById("bodywrap");
+                bodywrap.style.width = String(parseInt(tableWidth.value) * 112) + "px";
+            });
+        });
     </script>
 </head>
 
 <body>
+    <h1>CHUNITHM {{ GAME_VERSION }} 定数表</h1>
+    <p class="desc">本ページの情報はchunirecに基づきます。仕様上、情報が一時的に正確ではない場合があります。</p>
+    <div class="control">
+        <button onclick="toggleDispTitle()">タイトルの表示/非表示を切り替え</button>
+        <button onclick="toggleDispExp()">EXPERT以下の表示/非表示を切り替え</button>
+    </div>
+    <div class="control">
+        <p>幅：<input type="number" min="4" max="99" value="8" id="table_width"></p>
+    </div>
     <div id="bodywrap">
-        <h1>CHUNITHM {{ GAME_VERSION }} 定数表</h1>
-        <p class="desc">本ページの情報はchunirecに基づきます。仕様上、情報が一時的に正確ではない場合があります。</p>
-        <div class="control">
-            <button onclick="toggleDispTitle()">タイトルの表示/非表示を切り替え</button>
-            <button onclick="toggleDispExp()">EXPERT以下の表示/非表示を切り替え</button>
-        </div>
         <div id="outfield">{{ OUT_FIELD }}</div>
+        <div id="copyright">{{ COPYRIGHT }}</div>
     </div>
 </body>
 

@@ -19,13 +19,17 @@ def html_levblock(items_str: str) -> str:
 def html_items(song_str: str, is_ultima: bool = False) -> str:
     return f'<div class="items"{'''style="background-image: url('ultima.png');"''' if is_ultima else ""}>{song_str}</div>'
 
+def html_p(s: str) -> str:
+    return f'<p>{s}</p>'
+
 DATA_URL = "https://reiwa.f5.si/chunithm_record.json"
+COPYRIGHT_URL = "https://reiwa.f5.si/chunithm_right.json"
 IMAGE_URL_BASE = "https://reiwa.f5.si/musicjackets/chunithm/"
 TEMPLATE_PATH = "./templates/chunithm-template.html"
 
 GAME_VERSION_PLACEHOLDER = "{{ GAME_VERSION }}"
 OUT_FIELD_PLACEHOLDER = "{{ OUT_FIELD }}"
-# RIGHTS_PLACEHOLDER = "{{ RIGHTS }}"
+COPYRIGHT_PLACEHOLDER = "{{ COPYRIGHT }}"
 
 GAME_VERSION = "LUMINOUS PLUS"
 
@@ -42,6 +46,11 @@ constlist = [
 raw_data = easy_get(DATA_URL)
 if ord(raw_data[0]) == 65279:
     raw_data = raw_data[1:]  # BOM除去
+
+raw_rights = easy_get(COPYRIGHT_URL)
+if ord(raw_rights[0]) == 65279:
+    raw_rights = raw_rights[1:]  # BOM除去
+rights = json.loads(raw_rights)
 
 data: dict = json.loads(raw_data)
 data.sort(key=lambda x: (x["const"], x["release"] * -1), reverse=True)
@@ -68,7 +77,7 @@ for const_block in constlist:
         title: str = song["title"]
         artist: str = song["artist"]
         diff: str = song["diff"]
-        html_img_str = f'<img src="{IMAGE_URL_BASE}{hashlib.md5(f"{title}{artist}".encode("utf-8")).hexdigest()}.webp" class="{diff.lower()}">'
+        html_img_str = f'<img src="{IMAGE_URL_BASE}{hashlib.md5(f"{title}{artist}".encode("utf-8")).hexdigest()}.webp" class="{diff.lower()}" loading="lazy">'
         html_titleblock_str = f'<div class="titleblock">{title}</div>'
         items.append(html_items(
             html_img_str + html_titleblock_str,
@@ -76,14 +85,17 @@ for const_block in constlist:
         ))
     html_outfield += html_levblock("".join(items))
 
+html_copyrights = ""
+for right in rights:
+    html_copyrights += html_p(right)
+
 with open(TEMPLATE_PATH, "r", encoding="utf-8_sig") as f:
     template_str = f.read()
 
-while GAME_VERSION_PLACEHOLDER in template_str:
-    template_str = template_str.replace(GAME_VERSION_PLACEHOLDER, GAME_VERSION)
-
-while OUT_FIELD_PLACEHOLDER in template_str:
-    template_str = template_str.replace(OUT_FIELD_PLACEHOLDER, html_outfield)
+template_str = template_str \
+.replace(GAME_VERSION_PLACEHOLDER, GAME_VERSION) \
+.replace(OUT_FIELD_PLACEHOLDER, html_outfield) \
+.replace(COPYRIGHT_PLACEHOLDER, html_copyrights)
 
 with open("./root/chunithm.html", "w", encoding="utf-8_sig") as f:
     f.write(template_str)

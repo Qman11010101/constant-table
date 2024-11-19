@@ -41,8 +41,18 @@ button {
     }
 }
 
+input[type="number"] {
+    display: inline-block;
+    width: 50px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    padding: 5px;
+}
+
 #bodywrap {
     margin: 0 auto;
+    width: 896px;
 }
 
 .desc {
@@ -62,14 +72,12 @@ button {
 
 #outfield {
     margin: 0 auto;
-    width: 906px;
     padding: 5px 0;
 }
 
 .levblock {
     display: flex;
     flex-wrap: wrap;
-    padding: 0 5px;
     margin: 4px 0;
 }
 
