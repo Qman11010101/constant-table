@@ -8,7 +8,7 @@
     <title>CHUNITHM {{ GAME_VERSION }} 定数表</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Sawarabi+Gothic&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+JP:wght@100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <script>
         let dispTitle = true;
         let dispExps = true;
@@ -58,9 +58,9 @@
             }
         }
 
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
             const tableWidth = document.getElementById("table_width");
-            tableWidth.addEventListener("change", function() {
+            tableWidth.addEventListener("change", function () {
                 bodywrap = document.getElementById("bodywrap");
                 bodywrap.style.width = String(parseInt(tableWidth.value) * 112) + "px";
             });
