@@ -4,10 +4,16 @@ body {
     font-family: "Noto Sans", "Noto Sans JP", sans-serif;
 }
 
+@media print {
+    body {
+        background-color: #fff;
+    }
+}
+
 h1 {
     font-size: 300%;
     text-align: center;
-    padding: 10px 10px 20px;
+    padding: 10px 10px;
     font-family: "Noto Sans", "Noto Sans JP", sans-serif;
     font-weight: 600;
 }
@@ -25,6 +31,12 @@ a {
     width: 100%;
     display: flex;
     justify-content: center;
+}
+
+@media print {
+    .control {
+        display: none;
+    }
 }
 
 button {
@@ -58,15 +70,31 @@ input[type="checkbox"] {
 .control-item > label {
     display: block;
     padding: 10px;
-    background-color: green;
     margin: 5px;
     font-weight: bold;
-    color: white;
+    border: 2px solid green;
     border-radius: 10px;
+    box-sizing: border-box;
+
+    &:hover {
+        background-color: #ccc;
+        cursor: pointer;
+    }
+}
+
+input[type="checkbox"]:checked + label {
+    background-color: green;
+    border: 2px solid green;
+    color: white;
+
+    &::before {
+        content: "✔";
+        margin-right: 5px;
+    }
 
     &:hover {
         background-color: darkgreen;
-        cursor: pointer;
+        border: 2px solid darkgreen;
     }
 }
 
@@ -78,7 +106,13 @@ input[type="checkbox"] {
 .desc {
     text-align: center;
     font-size: 100%;
-    line-height: 1.5em;
+    line-height: 2rem;
+}
+
+@media print {
+    .desc {
+        display: none;
+    }
 }
 
 @media screen and (max-width: 649px) {
@@ -182,6 +216,19 @@ img.ultbg {
     margin-top: -2px;
 }
 
+@media print {
+    .titleblock {
+        background-color: white;
+        color: black;
+        border: 1px solid black;
+        box-sizing: border-box;
+    }
+
+    .titleblock span {
+        margin-top: -2px;
+    }
+}
+
 /* フッター */
 
 .footertext {
@@ -202,4 +249,10 @@ footer {
     line-height: 1.5em;
     margin: 10px 0;
     font-size: 12px;
+}
+
+@media print {
+    #copyright {
+        display: none;
+    }
 }
