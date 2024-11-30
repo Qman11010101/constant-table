@@ -7,6 +7,8 @@ body {
 @media print {
     body {
         background-color: #fff;
+        padding: 0;
+        margin: 0;
     }
 }
 
@@ -137,6 +139,12 @@ input[type="checkbox"]:checked + label {
     display: flex;
     flex-wrap: wrap;
     margin: 4px 0;
+}
+
+@media print {
+    .levblock {
+        margin: 0;
+    }
 }
 
 .levconst {

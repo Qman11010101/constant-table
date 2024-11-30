@@ -51,27 +51,14 @@ function toggleDispUnderExp() {
     }
 }
 
-function setTableWidthInit() {
-    const tableWidth = document.getElementById("table_width");
-    tableWidth.addEventListener("change", setTableWidth);
-}
-
-function toggleDispTitleInit() {
-    const dispTitleElm = document.getElementById("disp_title");
-    dispTitleElm.addEventListener("change", toggleDispTitle);
-}
-
-function toggleDispUnderExpInit() {
-    const dispDiffElm = document.getElementById("disp_under_exp");
-    dispDiffElm.addEventListener("change", toggleDispUnderExp);
+function init(fn, elementID) {
+    fn()
+    const element = document.getElementById(elementID);
+    element.addEventListener("change", fn);
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-    setTableWidthInit();
-    toggleDispTitleInit();
-    toggleDispUnderExpInit();
-
-    setTableWidth();
-    toggleDispTitle();
-    toggleDispUnderExp();
+    init(setTableWidth, "table_width");
+    init(toggleDispTitle, "disp_title");
+    init(toggleDispUnderExp, "disp_under_exp");
 });
