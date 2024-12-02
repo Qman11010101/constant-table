@@ -20,6 +20,13 @@ h1 {
     font-weight: 600;
 }
 
+h3 {
+    font-size: 120%;
+    text-align: center;
+    padding-bottom: 10px;
+    font-weight: 600;
+}
+
 a {
     color: blue;
     text-decoration: underline;
@@ -35,8 +42,28 @@ a {
     justify-content: center;
 }
 
+.notify-wrapper {
+    margin-bottom: 10px;
+    
+    .notify {
+        width: fit-content;
+        margin: 0 auto;
+        padding: 10px;
+        color: white;
+        background-color: #136d52;
+        line-height: 1.8;
+        text-align: center;
+    }
+
+    > *:not(:nth-child(1)) {
+        margin-top: 10px;
+    }
+}
+
 @media print {
-    .control {
+
+    .control,
+    .notify-wrapper {
         display: none;
     }
 }
@@ -69,7 +96,7 @@ input[type="checkbox"] {
     display: none;
 }
 
-.control-item > label {
+.control-item>label {
     display: block;
     padding: 10px;
     margin: 5px;
@@ -84,7 +111,7 @@ input[type="checkbox"] {
     }
 }
 
-input[type="checkbox"]:checked + label {
+input[type="checkbox"]:checked+label {
     background-color: green;
     border: 2px solid green;
     color: white;
