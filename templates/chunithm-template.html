@@ -9,71 +9,21 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+JP:wght@100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <script>
-        let dispTitle = true;
-        let dispExps = true;
-
-        function toggleDispTitle() {
-            const titles = document.getElementsByClassName("titleblock");
-            for (let i = 0; i < titles.length; i++) {
-                if (titles[i].style.display == "none") {
-                    titles[i].style.display = "block";
-                } else {
-                    titles[i].style.display = "none";
-                }
-            }
-        }
-
-        function toggleDispExp() {
-            dispExps = !dispExps;
-            const musics = document.getElementsByClassName("items");
-            for (let i = 0; i < musics.length; i++) {
-                if (musics[i].getElementsByTagName("div")[0].className === "levconst") continue;
-                const imgClass = musics[i].getElementsByTagName("img")[0]
-                if (imgClass.className !== "mas" && imgClass.className !== "ult") {
-                    if (dispExps) {
-                        musics[i].style.display = "block";
-                    } else {
-                        musics[i].style.display = "none";
-                    }
-                }
-            }
-            const blocks = document.getElementsByClassName("levblock");
-            if (dispExps) {
-                for (let i = 0; i < blocks.length; i++) {
-                    blocks[i].style.display = "flex";
-                }
-            } else {
-                for (let i = 0; i < blocks.length; i++) {
-                    const items = blocks[i].getElementsByClassName("items");
-                    let exists = false;
-                    for (let j = 1; j < items.length; j++) {
-                        if (items[j].style.display !== "none") {
-                            exists = true;
-                            break;
-                        }
-                    }
-                    if (!exists) blocks[i].style.display = "none";
-                }
-            }
-        }
-
-        document.addEventListener("DOMContentLoaded", function () {
-            const tableWidth = document.getElementById("table_width");
-            tableWidth.addEventListener("change", function () {
-                bodywrap = document.getElementById("bodywrap");
-                bodywrap.style.width = String(parseInt(tableWidth.value) * 112) + "px";
-            });
-        });
-    </script>
+    <script src="js/main.js"></script>
 </head>
 
 <body>
     <h1>CHUNITHM {{ GAME_VERSION }} 定数表</h1>
     <p class="desc">本ページの情報はchunirecに基づきます。仕様上、情報が一時的に正確ではない場合があります。</p>
     <div class="control">
-        <button onclick="toggleDispTitle()">タイトルの表示/非表示を切り替え</button>
-        <button onclick="toggleDispExp()">EXPERT以下の表示/非表示を切り替え</button>
+        <div class="control-item">
+            <input type="checkbox" id="disp_title" checked>
+            <label for="disp_title">タイトルの表示</label>
+        </div>
+        <div class="control-item">
+            <input type="checkbox" id="disp_under_exp">
+            <label for="disp_under_exp">EXPERT以下の表示</label>
+        </div>
     </div>
     <div class="control">
         <p>幅：<input type="number" min="4" max="99" value="8" id="table_width"></p>

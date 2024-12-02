@@ -12,15 +12,27 @@ def easy_get(url: str):
         return f"Error: {e.reason}"
     except Exception as e:
         return f"Unexpected Error: {e}"
-    
+
+
 def html_levblock(items_str: str) -> str:
     return f'<div class="levblock">{items_str}</div>'
+
 
 def html_items(song_str: str, is_ultima: bool = False) -> str:
     return f'<div class="items"{'''style="background-image: url('ultima.png');"''' if is_ultima else ""}>{song_str}</div>'
 
+
 def html_p(s: str) -> str:
     return f'<p>{s}</p>'
+
+
+def html_span(s: str) -> str:
+    return f'<span>{s}</span>'
+
+
+def html_div(s: str) -> str:
+    return f'<div>{s}</div>'
+
 
 DATA_URL = "https://reiwa.f5.si/chunithm_record.json"
 COPYRIGHT_URL = "https://reiwa.f5.si/chunithm_right.json"
@@ -71,18 +83,20 @@ for const_block in constlist:
     if const not in data_classified:
         continue
     items = []
-    items.append(html_items(f'<div class="levconst">{const_formatted}</div>'))
+    items.append(html_items(f'<div class="levconst">{html_span(const_formatted)}</div>'))
     songs = data_classified[const]
     for song in songs:
         title: str = song["title"]
         artist: str = song["artist"]
         diff: str = song["diff"]
-        html_img_str = f'<img src="{IMAGE_URL_BASE}{hashlib.md5(f"{title}{artist}".encode("utf-8")).hexdigest()}.webp" class="{diff.lower()}" loading="lazy">'
-        html_titleblock_str = f'<div class="titleblock">{title}</div>'
+        html_img_str = f'<img src="{IMAGE_URL_BASE}{hashlib.md5(f"{title}{artist}".encode(
+            "utf-8")).hexdigest()}.webp" class="{diff.lower()}" loading="lazy">'
+        html_titleblock_str = f'<div class="titleblock">{html_span(title)}</div>'
         items.append(html_items(
             html_img_str + html_titleblock_str,
             diff == "ULT"
         ))
+
     html_outfield += html_levblock("".join(items))
 
 html_copyrights = ""
@@ -93,9 +107,9 @@ with open(TEMPLATE_PATH, "r", encoding="utf-8_sig") as f:
     template_str = f.read()
 
 template_str = template_str \
-.replace(GAME_VERSION_PLACEHOLDER, GAME_VERSION) \
-.replace(OUT_FIELD_PLACEHOLDER, html_outfield) \
-.replace(COPYRIGHT_PLACEHOLDER, html_copyrights)
+    .replace(GAME_VERSION_PLACEHOLDER, GAME_VERSION) \
+    .replace(OUT_FIELD_PLACEHOLDER, html_outfield) \
+    .replace(COPYRIGHT_PLACEHOLDER, html_copyrights)
 
-with open("./root/chunithm.html", "w", encoding="utf-8_sig") as f:
+with open("./docs/chunithm.html", "w", encoding="utf-8_sig") as f:
     f.write(template_str)
