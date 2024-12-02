@@ -18,18 +18,18 @@ jobs:
           python-version: '3.13'
       - name: Generate page
         run: python generate_chunithm.py
-      - name: Check for changes
-        id: check_changes
+      - name: Diff
+        id: diff
         run: |
-          git diff --quiet && echo "No changes" || echo "Changes detected"
-          git diff --quiet
-          echo "changes_detected=$?" >> $GITHUB_OUTPUT
-      
-      - name: Commit and push changes
-        if: steps.check_changes.outputs.changes_detected != '0'
+          git add -N .
+          git diff --name-only --exit-code
+        continue-on-error: true
+      - name: Commit & Push
         run: |
+          set -x
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           git add .
-          git commit -m "Deploy: $(date -u)"
-          git push origin master --force
+          git commit --author=. -m 'generated'
+          git push
+        if: steps.diff.outcome == 'failure'
