@@ -1,9 +1,9 @@
 name: Refresh all constant tables
 
 on:
-  schedule:
-    # Run every day at 12:00 JST
-    - cron: '0 3 * * *'
+  push:
+    branches:
+      - master
 
 jobs:
   build:
@@ -14,7 +14,7 @@ jobs:
         with:
           python-version: '3.13'
       - name: Generate page
-        run: python generate_chunithm.py
+        run: python generate_chunithm.py force
       - name: Diff
         id: diff
         run: |

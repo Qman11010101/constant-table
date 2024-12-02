@@ -71,20 +71,23 @@ rights = json.loads(raw_rights)
 
 data: dict = json.loads(raw_data)
 
-# check if data is renewed
-if os.path.isfile("./chunithm_record.json"):
-    with open("./chunithm_record.json", "r", encoding="utf-8_sig") as f:
-        old_data = json.load(f)
-    if old_data == data:
-        print("No update")
-        sys.exit()
+# check if data is renewed (force = False)
+if sys.argv[1] != "force":
+    if os.path.isfile("./chunithm_record.json"):
+        with open("./chunithm_record.json", "r", encoding="utf-8_sig") as f:
+            old_data = json.load(f)
+        if old_data == data:
+            print("No update")
+            sys.exit()
+        else:
+            print("Data updated")
+            with open("./chunithm_record.json", "w", encoding="utf-8_sig") as f:
+                json.dump(data, f, ensure_ascii=False)
     else:
-        print("Data updated")
         with open("./chunithm_record.json", "w", encoding="utf-8_sig") as f:
             json.dump(data, f, ensure_ascii=False)
 else:
-    with open("./chunithm_record.json", "w", encoding="utf-8_sig") as f:
-        json.dump(data, f, ensure_ascii=False)
+    print("Force update")
 
 data.sort(key=lambda x: (x["const"], x["release"] * -1), reverse=True)
 
