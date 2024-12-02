@@ -19,7 +19,7 @@ def html_levblock(items_str: str) -> str:
 
 
 def html_items(song_str: str, is_ultima: bool = False) -> str:
-    return f'<div class="items"{'''style="background-image: url('ultima.png');"''' if is_ultima else ""}>{song_str}</div>'
+    return f'<div class="items"{"style=\"background-image: url('ultima.png');\"" if is_ultima else ""}>{song_str}</div>'
 
 
 def html_p(s: str) -> str:
