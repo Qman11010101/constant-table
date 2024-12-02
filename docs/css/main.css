@@ -44,7 +44,7 @@ a {
 
 .notify-wrapper {
     margin-bottom: 10px;
-    
+
     .notify {
         width: fit-content;
         margin: 0 auto;
@@ -302,4 +302,10 @@ footer {
     #copyright {
         display: none;
     }
+}
+
+.disclaimer {
+    margin-top: 10px;
+    width: 100%;
+    padding: 10px;
 }
