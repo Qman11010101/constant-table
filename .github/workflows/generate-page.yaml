@@ -11,10 +11,10 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v4
-      - run: python --version
-      - run: python3 --version
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
       - name: Generate page
-        run: python3 generate_chunithm.py
+        run: python generate_chunithm.py
