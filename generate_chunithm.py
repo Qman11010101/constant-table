@@ -90,8 +90,7 @@ for const_block in constlist:
         title: str = song["title"]
         artist: str = song["artist"]
         diff: str = song["diff"]
-        html_img_str = f'<img src="{IMAGE_URL_BASE}{hashlib.md5(f"{title}{artist}".encode(\
-            "utf-8")).hexdigest()}.webp" class="{diff.lower()}" loading="lazy">'
+        html_img_str = f'<img src="{IMAGE_URL_BASE}{hashlib.md5((title + artist).encode('utf-8')).hexdigest()}.webp" class="{diff.lower()}" loading="lazy">'
         html_titleblock_str = f'<div class="titleblock">{html_span(title)}</div>'
         items.append(html_items(
             html_img_str + html_titleblock_str,
