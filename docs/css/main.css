@@ -224,6 +224,18 @@ img.ultbg {
     margin-top: -2px;
 }
 
+.unknown-marker {
+    position: absolute;
+    left: 7px;
+    top: 7px;
+    width: 15px;
+    height: 15px;
+    background-color: red;
+    transform: rotate(45deg);
+    border: 2px solid white;
+    border-radius: 2px;
+}
+
 @media print {
     .titleblock {
         background-color: white;
