@@ -14,5 +14,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+      - run: python --version
+      - run: python3 --version
       - name: Generate page
         run: python3 generate_chunithm.py
