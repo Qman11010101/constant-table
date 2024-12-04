@@ -72,7 +72,7 @@ rights = json.loads(raw_rights)
 data: dict = json.loads(raw_data)
 
 # check if data is renewed (force = False)
-if sys.argv[1] != "force":
+if len(sys.argv) > 1 and sys.argv[1] != "force":
     if os.path.isfile("./chunithm_record.json"):
         with open("./chunithm_record.json", "r", encoding="utf-8_sig") as f:
             old_data = json.load(f)
