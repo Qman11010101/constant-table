@@ -1,5 +1,6 @@
 body {
     background-color: #eee;
+    color: #333;
     padding: 30px 0;
     font-family: "Noto Sans", "Noto Sans JP", sans-serif;
 }
@@ -33,6 +34,28 @@ a {
 
     &::visited {
         color: purple;
+    }
+}
+
+.tool-interlink {
+    display: block;
+    text-decoration: none;
+    width: fit-content;
+    margin: 0 auto;
+    color: #333;
+
+    div {
+        border: 2px solid #333;
+        border-radius: 10px;
+        padding: 10px;
+        transition-duration: .2s;
+
+        &:hover {
+            background-color: #333;
+            color: #eee;
+            cursor: pointer;
+            transition-duration: .2s;
+        }
     }
 }
 
