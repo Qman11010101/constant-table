@@ -71,7 +71,7 @@ data_classified = {}
 for music in data:
     if music["const"] != current_const:
         current_const = music["const"]
-        data_classified[str(current_const)] = []
+        data_classified[str(current_const)] = [] # このへん定数の表記がjsonに依存しててキモすぎる
     data_classified[str(current_const)].append(music)
 
 html_outfield = ""
