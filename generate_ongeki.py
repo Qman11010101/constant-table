@@ -87,7 +87,7 @@ for const_block in constlist:
         html_img_str = f'<img src="{IMAGE_URL_BASE}{imgsrc}.webp" class="{diff.lower()}" loading="lazy">'
         html_titleblock_str = f'<div class="titleblock">{html_span(title)}</div>'
         unknown_str = ""
-        if song["unknown"]:
+        if song["is_unknown"]:
             unknown_str = '<div class="unknown-marker"></div>'
         items.append(html_items(
             html_img_str + html_titleblock_str + unknown_str,
