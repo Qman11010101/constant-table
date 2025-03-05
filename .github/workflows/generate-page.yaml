@@ -13,8 +13,10 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.13'
-      - name: Generate page
+      - name: Generate page for CHUNITHM
         run: python generate_chunithm.py
+      - name: Generate page for Ongeki
+        run: python generate_ongeki.py
       - name: Diff
         id: diff
         run: |
