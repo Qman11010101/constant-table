@@ -22,7 +22,7 @@ function toggleDispUnderExp() {
     for (let i = 0; i < musics.length; i++) {
         if (musics[i].getElementsByTagName("div")[0].className === "levconst") continue;
         const imgClass = musics[i].getElementsByTagName("img")[0]
-        if (imgClass.className !== "mas" && imgClass.className !== "ult") {
+        if (imgClass.className !== "mas" && imgClass.className !== "ult" && imgClass.className !== "lun") {
             if (dispUnderExpElm.checked) {
                 musics[i].style.display = "block";
             } else {
