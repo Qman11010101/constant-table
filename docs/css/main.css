@@ -207,12 +207,13 @@ input[type="checkbox"]:checked+label {
     box-sizing: content-box;
 }
 
-.items img.ult {
+.items img.ult, .items img.lun {
     border-color: transparent;
 }
 
 .items img.mas,
-img.ultbg {
+img.ultbg,
+img.lunbg {
     width: 108px;
     border: none;
 }
