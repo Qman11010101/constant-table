@@ -3,26 +3,25 @@ import json
 import os
 import sys
 
-from commonlib import easy_get, html_levblock, html_p, html_span
+from commonlib import easy_get, html_levblock, html_span
 
 
-def html_items(song_str: str, is_ultima: bool = False) -> str:
-    ultima_str = ""
-    if is_ultima:
-        ultima_str = " style=\"background-image: url('ultima.png');\""
-    return f'<div class="items"{ultima_str}>{song_str}</div>'
+def html_items(song_str: str, is_lunatic: bool = False) -> str:
+    lunatic_str = ""
+    if is_lunatic:
+        lunatic_str = " style=\"background-image: url('lunatic.png');\""
+    return f'<div class="items"{lunatic_str}>{song_str}</div>'
 
 
-DATA_URL = "https://reiwa.f5.si/chunithm_record.json"
-COPYRIGHT_URL = "https://reiwa.f5.si/chunithm_right.json"
-IMAGE_URL_BASE = "https://reiwa.f5.si/musicjackets/chunithm/"
-TEMPLATE_PATH = "./templates/chunithm-template.html"
+DATA_URL = "https://reiwa.f5.si/ongeki_record.json"
+IMAGE_URL_BASE = "https://reiwa.f5.si/musicjackets/ongeki/"
+TEMPLATE_PATH = "./templates/ongeki-template.html"
 
 GAME_VERSION_PLACEHOLDER = "{{ GAME_VERSION }}"
 OUT_FIELD_PLACEHOLDER = "{{ OUT_FIELD }}"
 COPYRIGHT_PLACEHOLDER = "{{ COPYRIGHT }}"
 
-GAME_VERSION = "VERSE"
+GAME_VERSION = "Bright MEMORY"
 
 constlist = [
     15.9, 15.8, 15.7, 15.6, 15.5, 15.4, 15.3, 15.2, 15.1, 15,
@@ -31,39 +30,34 @@ constlist = [
     12.9, 12.8, 12.7, 12.6, 12.5, 12.4, 12.3, 12.2, 12.1, 12,
     11.9, 11.8, 11.7, 11.6, 11.5, 11.4, 11.3, 11.2, 11.1, 11,
     10.9, 10.8, 10.7, 10.6, 10.5, 10.4, 10.3, 10.2, 10.1, 10,
-    9.5, 9, 8.5, 8, 7.5, 7, 6, 5, 4, 3, 2, 1
+    9.7, 9, 8.7, 8, 7.7, 7, 6, 5, 4, 3, 2, 1, 0
 ]
 
 raw_data = easy_get(DATA_URL)
 if ord(raw_data[0]) == 65279:
     raw_data = raw_data[1:]  # BOM除去
 
-raw_rights = easy_get(COPYRIGHT_URL)
-if ord(raw_rights[0]) == 65279:
-    raw_rights = raw_rights[1:]  # BOM除去
-rights = json.loads(raw_rights)
-
 data: dict = json.loads(raw_data)
 
 # check if data is renewed (force = False)
 if len(sys.argv) > 1 and sys.argv[1] != "force":
-    if os.path.isfile("./chunithm_record.json"):
-        with open("./chunithm_record.json", "r", encoding="utf-8_sig") as f:
+    if os.path.isfile("./ongeki_record.json"):
+        with open("./ongeki_record.json", "r", encoding="utf-8_sig") as f:
             old_data = json.load(f)
         if old_data == data:
             print("No update")
             sys.exit()
         else:
             print("Data updated")
-            with open("./chunithm_record.json", "w", encoding="utf-8_sig") as f:
+            with open("./ongeki_record.json", "w", encoding="utf-8_sig") as f:
                 json.dump(data, f, ensure_ascii=False)
     else:
-        with open("./chunithm_record.json", "w", encoding="utf-8_sig") as f:
+        with open("./ongeki_record.json", "w", encoding="utf-8_sig") as f:
             json.dump(data, f, ensure_ascii=False)
 else:
     print("Force update")
 
-data.sort(key=lambda x: (x["const"], x["release"] * -1), reverse=True)
+data.sort(key=lambda x: (x["const"], x["release_unix"] * -1), reverse=True)
 
 current_const = constlist[0]
 data_classified = {}
@@ -97,22 +91,17 @@ for const_block in constlist:
             unknown_str = '<div class="unknown-marker"></div>'
         items.append(html_items(
             html_img_str + html_titleblock_str + unknown_str,
-            diff == "ULT"
+            diff == "LUN"
         ))
 
     html_outfield += html_levblock("".join(items))
-
-html_copyrights = ""
-for right in rights:
-    html_copyrights += html_p(right)
 
 with open(TEMPLATE_PATH, "r", encoding="utf-8_sig") as f:
     template_str = f.read()
 
 template_str = template_str \
     .replace(GAME_VERSION_PLACEHOLDER, GAME_VERSION) \
-    .replace(OUT_FIELD_PLACEHOLDER, html_outfield) \
-    .replace(COPYRIGHT_PLACEHOLDER, html_copyrights)
+    .replace(OUT_FIELD_PLACEHOLDER, html_outfield)
 
-with open("./docs/chunithm.html", "w", encoding="utf-8_sig") as f:
+with open("./docs/ongeki.html", "w", encoding="utf-8_sig") as f:
     f.write(template_str)
