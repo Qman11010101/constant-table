@@ -221,6 +221,7 @@ input[type="checkbox"]:checked+label {
 .items:first-child {
     border: 4px solid black;
     background-color: white;
+    color: black;
 }
 
 .items img {
