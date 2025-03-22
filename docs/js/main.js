@@ -1,7 +1,7 @@
 function setTableWidth() {
     const tableWidth = document.getElementById("table_width");
-    let bodywrap = document.getElementById("bodywrap");
-    bodywrap.style.width = String(parseInt(tableWidth.value) * 112) + "px"; // image 108px (100px + 4px border) + margin 2px * 2
+    const bodywrap = document.getElementById("bodywrap");
+    bodywrap.style.width = `${String(Number.parseInt(tableWidth.value) * 112)}px`; // image 108px (100px + 4px border) + margin 2px * 2
 }
 
 function toggleDispTitle() {
@@ -57,7 +57,7 @@ function init(fn, elementID) {
     element.addEventListener("change", fn);
 }
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
     init(setTableWidth, "table_width");
     init(toggleDispTitle, "disp_title");
     init(toggleDispUnderExp, "disp_under_exp");
