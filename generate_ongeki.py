@@ -21,7 +21,7 @@ GAME_VERSION_PLACEHOLDER = "{{ GAME_VERSION }}"
 OUT_FIELD_PLACEHOLDER = "{{ OUT_FIELD }}"
 COPYRIGHT_PLACEHOLDER = "{{ COPYRIGHT }}"
 
-GAME_VERSION = "Bright MEMORY Act.3"
+GAME_VERSION = "Re:Fresh"
 
 constlist = [
     15.9, 15.8, 15.7, 15.6, 15.5, 15.4, 15.3, 15.2, 15.1, 15.0,
@@ -65,7 +65,7 @@ data_classified = {}
 for music in data:
     if music["const"] != current_const:
         current_const = music["const"]
-        data_classified[str(current_const)] = [] # このへん定数の表記がjsonに依存しててキモすぎる
+        data_classified[str(current_const)] = []  # このへん定数の表記がjsonに依存しててキモすぎる
     data_classified[str(current_const)].append(music)
 
 html_outfield = ""
