@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head prefix="og:http://ogp.me/ns#">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/main.css">
+    <title>maimai {{ GAME_VERSION }} 定数表</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+JP:wght@100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <script src="js/main.js"></script>
+</head>
+
+<body>
+    <h1>maimai {{ GAME_VERSION }} 定数表</h1>
+    <p class="desc">本ページの情報は公式サイトおよび<a href="https://otoge-db.net">otoge-db</a>に基づきます。最新の楽曲の定数は正確ではない場合があります。</p>
+    <p class="desc">GitHub: <a href="https://github.com/Qman11010101/constant-table">https://github.com/Qman11010101/constant-table</a></p>
+    <a href="./chunithm.html" class="tool-interlink">
+        <div>CHUNITHM 定数表はこちら</div>
+    </a>
+    <a href="./ongeki.html" class="tool-interlink">
+        <div>オンゲキ 定数表はこちら</div>
+    </a>
+    <div class="control">
+        <div class="control-item">
+            <input type="checkbox" id="disp_title" checked>
+            <label for="disp_title">タイトルの表示</label>
+        </div>
+        <div class="control-item">
+            <input type="checkbox" id="disp_under_exp">
+            <label for="disp_under_exp">EXPERT以下の表示</label>
+        </div>
+    </div>
+    <div class="control">
+        <p>幅：<input type="number" min="4" max="20" value="8" id="table_width"></p>
+    </div>
+    <div id="bodywrap">
+        <div id="outfield">{{ OUT_FIELD }}</div>
+        <div class="disclaimer">
+            <p>サイト上のロゴ・背景・楽曲ジャケット画像の著作権は、全て著作権所持者に帰属します。</p>
+            <p>本サイトは非公式のものであり、株式会社SEGA様及びその関連会社とは一切関係ありません。</p>
+        </div>
+    </div>
+</body>
+
+</html>
