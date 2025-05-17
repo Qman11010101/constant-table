@@ -21,7 +21,7 @@ GAME_VERSION_PLACEHOLDER = "{{ GAME_VERSION }}"
 OUT_FIELD_PLACEHOLDER = "{{ OUT_FIELD }}"
 COPYRIGHT_PLACEHOLDER = "{{ COPYRIGHT }}"
 
-GAME_VERSION = "FESTiVAL"
+GAME_VERSION = "PRiSM PLUS"
 
 constlist = [
     15.9, 15.8, 15.7, 15.6, 15.5, 15.4, 15.3, 15.2, 15.1, 15.0,
@@ -91,7 +91,7 @@ for const_block in constlist:
             unknown_str = '<div class="unknown-marker"></div>'
         items.append(html_items(
             html_img_str + html_titleblock_str + unknown_str,
-            diff == "REM"
+            diff == "REMAS"
         ))
 
     html_outfield += html_levblock("".join(items))
