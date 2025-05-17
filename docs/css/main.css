@@ -233,14 +233,14 @@ input[type="checkbox"]:checked+label {
 
 .items img.ult,
 .items img.lun,
-.items img.rem {
+.items img.remas {
     border-color: transparent;
 }
 
 .items img.mas,
 img.ultbg,
 img.lunbg,
-img.rembg {
+img.remasbg {
     width: 108px;
     border: none;
 }
