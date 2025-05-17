@@ -291,6 +291,28 @@ img.rembg {
     border-radius: 2px;
 }
 
+.dx-marker {
+    position: absolute;
+    right: 7px;
+    top: 7px;
+    width: 15px;
+    height: 15px;
+    background: #FF4646;
+    background: linear-gradient(90deg,
+            rgba(255, 70, 70, 1) 0%,
+            rgba(255, 70, 70, 1) 19%,
+            rgba(255, 160, 45, 1) 20%,
+            rgba(255, 160, 45, 1) 39%,
+            rgba(255, 220, 0, 1) 40%,
+            rgba(255, 220, 0, 1) 59%,
+            rgba(154, 201, 72, 1) 60%,
+            rgba(154, 201, 72, 1) 79%,
+            rgba(0, 170, 230, 1) 80%);
+    transform: rotate(45deg);
+    border: 2px solid white;
+    border-radius: 5px;
+}
+
 @media print {
     .titleblock {
         background-color: white;

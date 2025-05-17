@@ -86,11 +86,13 @@ for const_block in constlist:
         imgsrc = hashlib.md5((title + artist).encode('utf-8')).hexdigest()
         html_img_str = f'<img src="{IMAGE_URL_BASE}{imgsrc}.webp" class="{diff.lower()}" loading="lazy">'
         html_titleblock_str = f'<div class="titleblock">{html_span(title)}</div>'
-        unknown_str = ""
+        makrers_str = ""
         if song.get("is_unknown", False):
-            unknown_str = '<div class="unknown-marker"></div>'
+            makrers_str = '<div class="unknown-marker"></div>'
+        if song.get("is_dx", False):
+            makrers_str += '<div class="dx-marker"></div>'
         items.append(html_items(
-            html_img_str + html_titleblock_str + unknown_str,
+            html_img_str + html_titleblock_str + makrers_str,
             diff == "REMAS"
         ))
 
