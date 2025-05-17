@@ -240,7 +240,7 @@ input[type="checkbox"]:checked+label {
 .items img.mas,
 img.ultbg,
 img.lunbg,
-img.remasbg {
+img.rembg {
     width: 108px;
     border: none;
 }
