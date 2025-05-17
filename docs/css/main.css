@@ -232,13 +232,15 @@ input[type="checkbox"]:checked+label {
 }
 
 .items img.ult,
-.items img.lun {
+.items img.lun,
+.items img.rem {
     border-color: transparent;
 }
 
 .items img.mas,
 img.ultbg,
-img.lunbg {
+img.lunbg,
+img.rembg {
     width: 108px;
     border: none;
 }
