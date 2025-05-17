@@ -17,6 +17,8 @@ jobs:
         run: python generate_chunithm.py
       - name: Generate page for Ongeki
         run: python generate_ongeki.py
+      - name: Generate page for maimai
+        run: python generate_maimai.py
       - name: Diff
         id: diff
         run: |
