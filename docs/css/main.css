@@ -32,7 +32,7 @@ a {
     color: blue;
     text-decoration: underline;
 
-    &::visited {
+    &:visited {
         color: purple;
     }
 }
