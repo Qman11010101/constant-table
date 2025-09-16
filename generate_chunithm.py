@@ -1,4 +1,3 @@
-import hashlib
 import json
 import os
 import sys
@@ -90,7 +89,7 @@ for const_block in constlist:
         artist: str = song["artist"]
         diff: str = song["diff"]
 
-        imgsrc = hashlib.md5((title + artist).encode("utf-8")).hexdigest()
+        imgsrc = song["img"] + ".webp"
         html_img_str = f'<img src="{IMAGE_URL_BASE}{imgsrc}.webp" class="{diff.lower()}" loading="lazy">'
         html_titleblock_str = f'<div class="titleblock">{html_span(title)}</div>'
         unknown_str = ""
@@ -107,7 +106,11 @@ for right in rights:
 with open(TEMPLATE_PATH, "r", encoding="utf-8_sig") as f:
     template_str = f.read()
 
-template_str = template_str.replace(GAME_VERSION_PLACEHOLDER, GAME_VERSION).replace(OUT_FIELD_PLACEHOLDER, html_outfield).replace(COPYRIGHT_PLACEHOLDER, html_copyrights)
+template_str = (
+    template_str.replace(GAME_VERSION_PLACEHOLDER, GAME_VERSION)
+    .replace(OUT_FIELD_PLACEHOLDER, html_outfield)
+    .replace(COPYRIGHT_PLACEHOLDER, html_copyrights)
+)
 
 with open("./docs/chunithm.html", "w", encoding="utf-8_sig") as f:
     f.write(template_str)
