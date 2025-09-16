@@ -14,7 +14,7 @@ def html_items(song_str: str, is_ultima: bool = False) -> str:
 
 DATA_URL = "https://reiwa.f5.si/chunithm_record.json"
 COPYRIGHT_URL = "https://reiwa.f5.si/chunithm_right.json"
-IMAGE_URL_BASE = "https://reiwa.f5.si/musicjackets/chunithm/"
+IMAGE_URL_BASE = "https://reiwa.f5.si/jackets/chunithm/"
 TEMPLATE_PATH = "./templates/chunithm-template.html"
 
 GAME_VERSION_PLACEHOLDER = "{{ GAME_VERSION }}"
