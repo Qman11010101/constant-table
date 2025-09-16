@@ -301,7 +301,6 @@ img.rembg {
     top: 7px;
     width: 15px;
     height: 15px;
-    background: #FF4646;
     background: linear-gradient(90deg,
             rgba(255, 70, 70, 1) 0%,
             rgba(255, 70, 70, 1) 19%,
