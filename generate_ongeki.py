@@ -1,4 +1,3 @@
-import hashlib
 import json
 import os
 import sys
@@ -14,7 +13,7 @@ def html_items(song_str: str, is_lunatic: bool = False) -> str:
 
 
 DATA_URL = "https://reiwa.f5.si/ongeki_record.json"
-IMAGE_URL_BASE = "https://reiwa.f5.si/musicjackets/ongeki/"
+IMAGE_URL_BASE = "https://reiwa.f5.si/jackets/ongeki/"
 TEMPLATE_PATH = "./templates/ongeki-template.html"
 
 GAME_VERSION_PLACEHOLDER = "{{ GAME_VERSION }}"
@@ -85,7 +84,7 @@ for const_block in constlist:
         artist: str = song["artist"]
         diff: str = song["diff"]
 
-        imgsrc = hashlib.md5((title + artist).encode("utf-8")).hexdigest()
+        imgsrc = song["img"]
         html_img_str = f'<img src="{IMAGE_URL_BASE}{imgsrc}.webp" class="{diff.lower()}" loading="lazy">'
         html_titleblock_str = f'<div class="titleblock">{html_span(title)}</div>'
         unknown_str = ""
