@@ -89,7 +89,7 @@ for const_block in constlist:
         artist: str = song["artist"]
         diff: str = song["diff"]
 
-        imgsrc = song["img"]
+        imgsrc: str = song["img"]
         html_img_str = f'<img src="{IMAGE_URL_BASE}{imgsrc}.webp" class="{diff.lower()}" loading="lazy">'
         html_titleblock_str = f'<div class="titleblock">{html_span(title)}</div>'
         unknown_str = ""
