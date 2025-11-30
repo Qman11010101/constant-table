@@ -74,13 +74,13 @@ data_classified = {}
 for music in data:
     if music["const"] != current_const:
         current_const = music["const"]
-        data_classified[str(current_const)] = []  # このへん定数の表記がjsonに依存しててキモすぎる
-    data_classified[str(current_const)].append(music)
+        data_classified["{:.1f}".format(current_const)] = []
+    data_classified["{:.1f}".format(current_const)].append(music)
 
 html_outfield = ""
 for const_block in constlist:
-    const = str(const_block)
-    const_formatted = "{:.1f}".format(const_block)
+    const = "{:.1f}".format(const_block)
+    const_formatted = const
     if const not in data_classified:
         continue
     items = []
