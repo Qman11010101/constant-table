@@ -4,7 +4,7 @@ import sys
 
 from commonlib import easy_get, html_levblock, html_p, html_span
 
-# 緊急更新用コメント: 2
+# 緊急更新用コメント: 3
 
 
 def html_items(song_str: str, is_ultima: bool = False) -> str:
@@ -84,7 +84,9 @@ for const_block in constlist:
     if const not in data_classified:
         continue
     items = []
-    items.append(html_items(f'<div class="levconst">{html_span(const_formatted)}</div>'))
+    items.append(
+        html_items(f'<div class="levconst">{html_span(const_formatted)}</div>')
+    )
     songs = data_classified[const]
     for song in songs:
         title: str = song["title"]
@@ -97,7 +99,9 @@ for const_block in constlist:
         unknown_str = ""
         if song["unknown"]:
             unknown_str = '<div class="unknown-marker"></div>'
-        items.append(html_items(html_img_str + html_titleblock_str + unknown_str, diff == "ULT"))
+        items.append(
+            html_items(html_img_str + html_titleblock_str + unknown_str, diff == "ULT")
+        )
 
     html_outfield += html_levblock("".join(items))
 
