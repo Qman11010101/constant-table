@@ -4,7 +4,7 @@ import sys
 
 from commonlib import easy_get, html_levblock, html_p, html_span
 
-# 緊急更新用コメント: 3
+# 緊急更新用コメント: 4
 
 
 def html_items(song_str: str, is_ultima: bool = False) -> str:
