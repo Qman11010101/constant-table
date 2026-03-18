@@ -20,7 +20,7 @@ GAME_VERSION_PLACEHOLDER = "{{ GAME_VERSION }}"
 OUT_FIELD_PLACEHOLDER = "{{ OUT_FIELD }}"
 COPYRIGHT_PLACEHOLDER = "{{ COPYRIGHT }}"
 
-GAME_VERSION = "CiRCLE"
+GAME_VERSION = "CiRCLE PLUS"
 
 # fmt: off
 constlist = [
@@ -77,7 +77,9 @@ for const_block in constlist:
     if const not in data_classified:
         continue
     items = []
-    items.append(html_items(f'<div class="levconst">{html_span(const_formatted)}</div>'))
+    items.append(
+        html_items(f'<div class="levconst">{html_span(const_formatted)}</div>')
+    )
     songs = data_classified[const]
     for song in songs:
         title: str = song["title"]
@@ -92,14 +94,20 @@ for const_block in constlist:
             makrers_str = '<div class="unknown-marker"></div>'
         if song.get("is_dx", False):
             makrers_str += '<div class="dx-marker"></div>'
-        items.append(html_items(html_img_str + html_titleblock_str + makrers_str, diff == "REMAS"))
+        items.append(
+            html_items(
+                html_img_str + html_titleblock_str + makrers_str, diff == "REMAS"
+            )
+        )
 
     html_outfield += html_levblock("".join(items))
 
 with open(TEMPLATE_PATH, "r", encoding="utf-8_sig") as f:
     template_str = f.read()
 
-template_str = template_str.replace(GAME_VERSION_PLACEHOLDER, GAME_VERSION).replace(OUT_FIELD_PLACEHOLDER, html_outfield)
+template_str = template_str.replace(GAME_VERSION_PLACEHOLDER, GAME_VERSION).replace(
+    OUT_FIELD_PLACEHOLDER, html_outfield
+)
 
 with open("./docs/maimai.html", "w", encoding="utf-8_sig") as f:
     f.write(template_str)
