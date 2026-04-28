@@ -27,6 +27,7 @@ GAME_VERSION = "X-VERSE-X"
 
 # fmt: off
 constlist = [
+    16.4, 16.3, 16.2, 16.1, 16,
     15.9, 15.8, 15.7, 15.6, 15.5, 15.4, 15.3, 15.2, 15.1, 15,
     14.9, 14.8, 14.7, 14.6, 14.5, 14.4, 14.3, 14.2, 14.1, 14,
     13.9, 13.8, 13.7, 13.6, 13.5, 13.4, 13.3, 13.2, 13.1, 13,
@@ -72,6 +73,7 @@ current_const = constlist[0]
 data_classified = {}
 
 for music in data:
+    # バグ: constlistの最初の要素と通常譜面の最高定数が一致していた場合、空配列を作る方向に行かずエラーが出る
     if music["const"] != current_const:
         current_const = music["const"]
         data_classified["{:.1f}".format(current_const)] = []
