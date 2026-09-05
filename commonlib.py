@@ -17,12 +17,12 @@ def html_levblock(items_str: str) -> str:
 
 
 def html_p(s: str) -> str:
-    return f'<p>{s}</p>'
+    return f"<p>{s}</p>"
 
 
 def html_span(s: str) -> str:
-    return f'<span>{s}</span>'
+    return f"<span>{s}</span>"
 
 
 def html_div(s: str) -> str:
-    return f'<div>{s}</div>'
+    return f"<div>{s}</div>"

@@ -14,9 +14,11 @@ def html_items(song_str: str, is_ultima: bool = False) -> str:
     return f'<div class="items"{ultima_str}>{song_str}</div>'
 
 
-DATA_URL = "https://reiwa.f5.si/chunithm_record.json"
+DATA_URL = (
+    "https://static.chunisupport.net/compat/reiwa/1/chunithm_record/original.json"
+)
 COPYRIGHT_URL = "https://reiwa.f5.si/chunithm_right.json"
-IMAGE_URL_BASE = "https://reiwa.f5.si/jackets/chunithm/"
+IMAGE_URL_BASE = "https://image.chunisupport.net/jackets/chunithm/"
 TEMPLATE_PATH = "./templates/chunithm-template.html"
 
 GAME_VERSION_PLACEHOLDER = "{{ GAME_VERSION }}"
