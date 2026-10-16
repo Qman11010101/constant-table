@@ -4,6 +4,8 @@ import sys
 
 from commonlib import easy_get, html_levblock, html_span
 
+# 緊急更新用コメント: 1
+
 
 def html_items(song_str: str, is_lunatic: bool = False) -> str:
     lunatic_str = ""
@@ -77,7 +79,9 @@ for const_block in constlist:
     if const not in data_classified:
         continue
     items = []
-    items.append(html_items(f'<div class="levconst">{html_span(const_formatted)}</div>'))
+    items.append(
+        html_items(f'<div class="levconst">{html_span(const_formatted)}</div>')
+    )
     songs = data_classified[const]
     for song in songs:
         title: str = song["title"]
@@ -90,14 +94,18 @@ for const_block in constlist:
         unknown_str = ""
         if song["is_unknown"]:
             unknown_str = '<div class="unknown-marker"></div>'
-        items.append(html_items(html_img_str + html_titleblock_str + unknown_str, diff == "LUN"))
+        items.append(
+            html_items(html_img_str + html_titleblock_str + unknown_str, diff == "LUN")
+        )
 
     html_outfield += html_levblock("".join(items))
 
 with open(TEMPLATE_PATH, "r", encoding="utf-8_sig") as f:
     template_str = f.read()
 
-template_str = template_str.replace(GAME_VERSION_PLACEHOLDER, GAME_VERSION).replace(OUT_FIELD_PLACEHOLDER, html_outfield)
+template_str = template_str.replace(GAME_VERSION_PLACEHOLDER, GAME_VERSION).replace(
+    OUT_FIELD_PLACEHOLDER, html_outfield
+)
 
 with open("./docs/ongeki.html", "w", encoding="utf-8_sig") as f:
     f.write(template_str)
