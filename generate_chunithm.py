@@ -41,15 +41,18 @@ constlist = [
 # fmt: on
 
 raw_data = easy_get(DATA_URL)
-if ord(raw_data[0]) == 65279:
-    raw_data = raw_data[1:]  # BOM除去
-
 raw_rights = easy_get(COPYRIGHT_URL)
-if ord(raw_rights[0]) == 65279:
-    raw_rights = raw_rights[1:]  # BOM除去
-rights = json.loads(raw_rights)
+try:
+    rights = json.loads(raw_rights)
+except json.JSONDecodeError:
+    print(repr(raw_rights[:100]))
+    raise
 
-data: dict = json.loads(raw_data)
+try:
+    data: dict = json.loads(raw_data)
+except json.JSONDecodeError:
+    print(repr(raw_data[:100]))
+    raise
 
 # check if data is renewed (force = False)
 if len(sys.argv) > 1 and sys.argv[1] != "force":

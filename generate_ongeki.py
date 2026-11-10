@@ -38,10 +38,11 @@ constlist = [
 # fmt: on
 
 raw_data = easy_get(DATA_URL)
-if ord(raw_data[0]) == 65279:
-    raw_data = raw_data[1:]  # BOM除去
-
-data: dict = json.loads(raw_data)
+try:
+    data: dict = json.loads(raw_data)
+except json.JSONDecodeError:
+    print(repr(raw_data[:100]))
+    raise
 
 # check if data is renewed (force = False)
 if len(sys.argv) > 1 and sys.argv[1] != "force":
